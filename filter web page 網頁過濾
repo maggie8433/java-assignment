@@ -1,0 +1,77 @@
+package pkg26;
+
+/**
+ *
+ * @author User
+ */
+import java.net.*;
+import java.io.*;
+import javax.swing.*;
+
+
+ private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {                                           
+        // TODO add your handling code here:
+        if(jCheckBox1.isSelected() == true )
+        {
+            JOptionPane.showMessageDialog(this,"");
+        }
+    }                                          
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {                                           
+        // TODO add your handling code here:
+        jLabel1.setText(jComboBox1.getSelectedItem().toString());
+        if(jComboBox1.getSelectedItem().toString().indexOf("B") != -1)
+        {
+            JOptionPane.showMessageDialog(this,"你選了B");
+        }
+        
+    }                                          
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        // TODO add your handling code here:
+        if(jTextField1.getText().toString().indexOf("www") == -1)
+        {
+            JOptionPane.showMessageDialog(this,"請重新輸入");
+            return;
+        }
+        //jTextArea1.setText("");
+         String str;
+        try
+        {
+            URL u=new URL(jTextField1.getText().toString());
+            
+            Object obj=u.getContent();
+            InputStreamReader isr=new InputStreamReader((InputStream)obj,"utf-8");
+            BufferedReader br=new BufferedReader(isr);
+            //boolean isend = false;
+            //int count = 0;
+            jTextArea1.setText("" );
+            while((str=br.readLine())!=null )
+            { 
+                if(jCheckBox1.isSelected() == true)
+                {
+                    if(jTextField2.getText().toString().length() > 0 && str.indexOf(jTextField2.getText().toString()) != -1)
+                    {
+                        jTextArea1.append(str+"\n");
+                    }
+                }
+                    else
+                    {
+                        jTextArea1.append(str+"\n");
+                    }
+               // jTextArea1.append(str+"\n" );
+               
+            }
+            br.close();
+            
+        }
+        catch (IOException e)
+        {
+            System.out.println("發生了"+e+"例外");
+        }
+        
+        
+         
+        //URL  = new URL(jTextField1.getText().toString());
+        
+    }                                        
